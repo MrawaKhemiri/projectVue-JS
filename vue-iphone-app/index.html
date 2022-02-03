@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone 13 - application</title>
+
+    <script src="https://unpkg.com/vue@3.2.29"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="nav-bar"></div>
+        <div class="cart">Cart({{cart}})</div>
+        <div class="product-display">
+            <div class="product-container">
+                <div class="product-image">
+                    <img :src="image" :alt="product">
+                </div>
+                <div class="product-info">
+                    <h1>{{product}}</h1>
+                    <p>{{description}}</p>
+
+                    <p v-if="quantity > 5">In stock</p>
+                    <p v-else-if="(quantity > 0) && (quantity <= 5)">Almost sold out</p>
+                    <p v-else>Out of stock</p>
+                    <ul>
+                        <li v-for="spec in specs">{{ spec }}</li>
+                    </ul>
+
+                    <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)">
+                        {{ variant.color }}
+                    </div>
+                    <button @click="cart++" class="button"> Ajouter à la carte </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="./js/main.js "></script>
+</body>
+
+</html>
